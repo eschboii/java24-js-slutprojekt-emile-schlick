@@ -1,4 +1,5 @@
 import { fetchOptions, BASE_URL } from '../api.js';
+import { genreMap } from '../genreUtils.js';
 
 export class MovieCard {
   constructor(movie) {
@@ -9,6 +10,7 @@ export class MovieCard {
     this.voteAverage = movie.vote_average;
     this.posterPath = movie.poster_path;
     this.trailerLoaded = false;
+    this.genres = movie.genre_ids?.map(id => genreMap[id]).filter(Boolean);
   }
 
   render() {
@@ -27,7 +29,10 @@ export class MovieCard {
         <h2>${this.title}</h2>
         <p><strong>Premiär:</strong> ${this.releaseDate || 'Okänd'}</p>
         <p><strong>Popularitet:</strong> ${Math.round(this.popularity)}</p>
-        <p><strong>Betyg:</strong> ${Math.round(this.voteAverage*10)/10 || "Okänd"}</p>
+        <p><strong>Betyg:</strong> ${Math.round(this.voteAverage * 10) / 10 || 'Okänd'}</p>
+        <div class="genre-badges">
+          ${this.#renderGenreBadges()}
+        </div>
       </a>
     `;
 
@@ -36,7 +41,13 @@ export class MovieCard {
     return article;
   }
 
-  #addHoverEvents(article) {
+  #renderGenreBadges() {
+    if (!this.genres || this.genres.length === 0) return '<span>Okänd</span>';
+
+    return this.genres.map(genre => `<span class="badge">${genre}</span>`).join('');
+  }
+
+  #addHoverEvents(article, imageUrl) {
     const mediaContainer = article.querySelector('.media-container');
     const img = article.querySelector('.movie-poster');
     let hoverTimeout;
@@ -76,7 +87,7 @@ export class MovieCard {
             frameborder="0" allow="autoplay" allowfullscreen>
           </iframe>
         `
-        : `<p>Ingen tillgänglig trailer .</p>`;
+        : `<p>Ingen tillgänglig trailer.</p>`;
 
     } catch (err) {
       console.error('Kunde inte hämta trailer:', err.message);

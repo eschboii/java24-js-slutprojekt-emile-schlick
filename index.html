@@ -3,47 +3,69 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>The Movie Database</title>
+  <title>Emiles Movie Database</title>
   <link rel="stylesheet" href="CSS/style.css" />
-  <link rel="shortcut icon" href="#" type="image/x-icon">
+  <link rel="shortcut icon" href="#" type="image/x-icon" />
 </head>
 <body>
 
   <header>
-    <h1>The Movie Database</h1>
-    <nav>
-      <button id="btn-popular">Populära Filmer</button>
-      <button id="btn-toprated">Topprankade Filmer</button>
-    </nav>
+    <div class="header-container">
+    <div class="header-cent">
+    <h1>Emiles Movie Database</h1>
+    <div class="button-group">
+        <button id="btn-popular">Populära Filmer</button>
+        <button id="btn-toprated">Topprankade Filmer</button>
+        <button id="btn-popular-people">Populära Personer</button>
+      </div>
+    </div>
+
+    <section id="filters-container">
+        <form id="search-form">
+          <div class="search-bar-row">
+              <label for="search-input">Sökord:</label>
+            </div>
+            <div class="search-input-wrapper">
+              <input type="text" id="search-input" placeholder="Sök film eller person..." required />
+              <button type="submit" id="search-btn">Sök</button>
+            </div>
+        
+  
+          <div class="dropdowns">
+            <div class="filter">
+              <label for="search-type">Typ:</label>
+              <select id="search-type">
+                <option value="movie">Film</option>
+                <option value="person">Person</option>
+              </select>
+            </div>
+  
+            <div class="filter">
+              <label for="genre-select">Genre:</label>
+              <select id="genre-select">
+                <option value="">Alla</option>
+              </select>
+            </div>
+  
+            <div class="filter">
+              <label for="sort-select">Sortera:</label>
+              <select id="sort-select">
+                <option value="">-- Välj --</option>
+                <option value="name-asc">Namn A–Ö</option>
+                <option value="name-desc">Namn Ö–A</option>
+                <option value="popularity-asc">Popularitet ↑</option>
+                <option value="popularity-desc">Popularitet ↓</option>
+              </select>
+            </div>
+          </div>
+        </form>
+      </section>
+    </div>
   </header>
 
   <main>     
-   
-    <section id="search-section">
-        <form id="search-form">
-          <input type="text" id="search-input" placeholder="Sök film eller person..." required />
-          <select id="search-type">
-            <option value="movie">Film</option>
-            <option value="person">Person</option>
-          </select> 
-          <div id="sort-controls">
-            <label for="sort-select">Sortera efter:</label>
-            <select id="sort-select">
-              <option value="">-- Välj --</option>
-              <option value="name-asc">Namn A–Ö</option>
-              <option value="name-desc">Namn Ö–A</option>
-              <option value="popularity-asc">Popularitet ↑</option>
-              <option value="popularity-desc">Popularitet ↓</option>
-            </select>
-          </div>
-          <button type="submit">Sök</button>
-        </form>
-      </section>
-      <div id="error-message" style="display: none;"></div>
-
-
-          
-      <section id="movie-list"></section>
+    <div id="error-message" style="display: none;"></div>
+    <section id="movie-list"></section>
   </main>
 
   <script type="module" src="./main.js"></script>

@@ -1,4 +1,5 @@
 const ACCESS_TOKEN = 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJlMzBmYzE4ODlmNmM4MjgwOGU4YzUzYTgwMmYxNmYzNSIsIm5iZiI6MTc0NDc5MDU3My45ODcsInN1YiI6IjY3ZmY2NDJkODNjNmU1NjdjN2Q5MmI2NCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.OvaOUmpFAd0AHEF2eEf4VrpgYV_cFPhUPxKWvKeemwc';
+
 export const BASE_URL = 'https://api.themoviedb.org/3';
 export const fetchOptions = {
   method: 'GET',
@@ -22,6 +23,13 @@ export async function fetchPopularMovies() {
     return await res.json();
   }
 
+  export async function fetchPopularPeople() {
+    const url = `${BASE_URL}/person/popular?language=sv-SE&page=1`;
+    const res = await fetch(url, fetchOptions);
+    if (!res.ok) throw new Error('Kunde inte hämta populära personer');
+    return await res.json();
+  }
+
   export async function searchTMDB(query, type) {
     const endpoint = type === 'person' ? '/search/person' : '/search/movie';
     const maxPages = 5;
@@ -40,5 +48,19 @@ export async function fetchPopularMovies() {
     }
   
     return { results: allResults };
+  }
+
+  export async function fetchGenres() {
+    const res = await fetch(`${BASE_URL}/genre/movie/list?language=${language}`, fetchOptions);
+    if (!res.ok) throw new Error('Kunde inte hämta genrer');
+    const data = await res.json();
+    return data.genres;
+  }
+  
+  export async function fetchByGenre(genreId) {
+    const url = `${BASE_URL}/discover/movie?with_genres=${genreId}&language=${language}&page=1`;
+    const res = await fetch(url, fetchOptions);
+    if (!res.ok) throw new Error('Kunde inte hämta filmer för vald genre');
+    return await res.json();
   }
   
