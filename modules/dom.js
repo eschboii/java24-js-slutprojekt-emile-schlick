@@ -20,3 +20,20 @@ export function renderPeople(peopleArray) {
     container.appendChild(card.render());
   });
 }
+
+export function renderGenreDropdown(genres, selectElement) {
+  selectElement.innerHTML = '';
+
+  const defaultOption = document.createElement('option');
+  defaultOption.value = '';
+  defaultOption.textContent = '-- Välj --';
+  selectElement.appendChild(defaultOption);
+  
+  genres.forEach(g => {
+    const option = document.createElement('option');
+    option.value = g.id;
+    option.textContent = g.name;
+    selectElement.appendChild(option);
+  });
+}
+

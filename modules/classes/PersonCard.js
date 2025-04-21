@@ -22,11 +22,13 @@ export class PersonCard {
           <img class="movie-poster" src="${imageUrl}" alt="${this.name}" />
         </div>
         <h2>${this.name}</h2>
-        <p><strong>Popularitet:</strong> ${Math.round(this.popularity)}</p>
-        <p><strong>Avdelning:</strong> ${this.department || 'Okänd'}</p>
-        <ul style="list-style: none; padding: 0; margin: 0;">
-          ${this.#renderKnownFor()}
-        </ul>
+        <div class="person-info">
+          <p><strong>Populäritet:</strong> ${Math.round(this.popularity)}</p>
+          <p><strong>Yrke:</strong> ${this.department || 'Okänd'}</p>
+          <ul class="known-for-list">
+            ${this.#renderKnownFor()}
+          </ul>
+        </div>
       </a>
     `;
 
@@ -35,9 +37,18 @@ export class PersonCard {
 
   #renderKnownFor() {
     return this.knownFor.map(item => {
-      const type = item.media_type === 'tv' ? 'TV' : 'Movie';
+      const type = item.media_type === 'tv' ? 'Tv' : 'Film';
       const title = item.title || item.name || 'Okänd titel';
-      return `<li>${type}: ${title}</li>`;
+      const link = `https://www.themoviedb.org/${item.media_type}/${item.id}`;
+
+      return `
+        <li>
+          <span class="media-type">${type}:</span>
+          <a href="${link}" target="_blank">
+            <span class="known-title" title="${title}">${title}</span>
+          </a>
+        </li>
+      `;
     }).join('');
   }
 }

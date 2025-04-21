@@ -237,3 +237,57 @@ select {
   padding: 0.5rem;
   font-size: 1rem;
 }
+
+
+.person-info {
+  text-align: left;
+  padding: 0 8px;
+}
+
+.person-info ul {
+  padding-left: 0;
+  margin-left: 0;
+  list-style: none;
+  margin-top: 1rem; 
+}
+
+.person-info p,
+.person-info li {
+  display: flex;
+  gap: 6px;
+  align-items: baseline;
+  margin: 0 0 6px 0;
+}
+
+.person-info li > span:first-child {
+  min-width: 50px;
+  font-weight: bold;
+  text-align: left;
+}
+.person-info li > .media-type {
+  min-width: 50px;
+  font-weight: bold;
+  text-align: left;
+  display: inline-block;
+}
+
+.known-title {
+  display: inline-block;
+  max-width: 180px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  vertical-align: bottom;
+}
+
+.media-type {
+  display: inline-block;
+  min-width: 48px;
+  font-weight: bold;
+}
+
+.media-type-label {
+  display: inline-block;
+  min-width: 48px;
+  font-weight: bold;
+}

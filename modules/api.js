@@ -24,7 +24,7 @@ export async function fetchPopularMovies() {
   }
 
   export async function fetchPopularPeople() {
-    const url = `${BASE_URL}/person/popular?language=sv-SE&page=1`;
+    const url = `${BASE_URL}/person/popular?language=${language}&page=1`;
     const res = await fetch(url, fetchOptions);
     if (!res.ok) throw new Error('Kunde inte hämta populära personer');
     return await res.json();
@@ -63,4 +63,9 @@ export async function fetchPopularMovies() {
     if (!res.ok) throw new Error('Kunde inte hämta filmer för vald genre');
     return await res.json();
   }
+
+  export function buildTrailerUrl(movieId) {
+    return `${BASE_URL}/movie/${movieId}/videos?language=en-US`;
+  }
+  
   

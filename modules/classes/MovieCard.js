@@ -1,5 +1,5 @@
-import { fetchOptions, BASE_URL } from '../api.js';
-import { genreMap } from '../genreUtils.js';
+import { fetchOptions, buildTrailerUrl } from '../api.js';
+import { getGenreNameById } from '../genreUtils.js';
 
 export class MovieCard {
   constructor(movie) {
@@ -10,7 +10,7 @@ export class MovieCard {
     this.voteAverage = movie.vote_average;
     this.posterPath = movie.poster_path;
     this.trailerLoaded = false;
-    this.genres = movie.genre_ids?.map(id => genreMap[id]).filter(Boolean);
+    this.genres = movie.genre_ids?.map(getGenreNameById).filter(Boolean);
   }
 
   render() {
@@ -70,7 +70,7 @@ export class MovieCard {
   }
 
   async #loadTrailer(container) {
-    const url = `${BASE_URL}/movie/${this.id}/videos?language=en-US`;
+    const url = buildTrailerUrl(this.id);
 
     try {
       const response = await fetch(url, fetchOptions);
