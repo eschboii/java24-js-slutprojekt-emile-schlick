@@ -1,5 +1,5 @@
-import { fetchOptions, buildTrailerUrl } from '../api.js';
 import { getGenreNameById } from '../genreUtils.js';
+import { openTrailerModal } from '../dom.js';
 
 export class MovieCard {
   constructor(movie) {
@@ -9,7 +9,7 @@ export class MovieCard {
     this.popularity = movie.popularity;
     this.voteAverage = movie.vote_average;
     this.posterPath = movie.poster_path;
-    this.trailerLoaded = false;
+    this.overview = movie.overview;
     this.genres = movie.genre_ids?.map(getGenreNameById).filter(Boolean);
   }
 
@@ -22,7 +22,8 @@ export class MovieCard {
       : 'https://via.placeholder.com/500x750?text=Ingen+bild';
 
     article.innerHTML = `
-      <a href="https://www.themoviedb.org/movie/${this.id}" target="_blank" style="text-decoration: none; color: inherit;">
+      <a href="https://www.themoviedb.org/movie/${this.id}" target="_blank"
+         style="text-decoration:none;color:inherit;">
         <div class="media-container">
           <img class="movie-poster" src="${imageUrl}" alt="${this.title}" />
         </div>
@@ -34,64 +35,25 @@ export class MovieCard {
           ${this.#renderGenreBadges()}
         </div>
       </a>
+
+      <!-- Overlay med summary + knapp till modal -->
+      <div class="summary-overlay">
+        <p class="overview">${this.overview || 'Ingen beskrivning tillgänglig.'}</p>
+        <button class="trailer-btn">Se trailer</button>
+      </div>
     `;
 
-    this.#addHoverEvents(article, imageUrl);
+    const btn = article.querySelector('.trailer-btn');
+    btn.addEventListener('click', e => {
+      e.stopPropagation();
+      openTrailerModal(this.id);
+    });
 
     return article;
   }
 
   #renderGenreBadges() {
-    if (!this.genres || this.genres.length === 0) return '<span>Okänd</span>';
-
-    return this.genres.map(genre => `<span class="badge">${genre}</span>`).join('');
-  }
-
-  #addHoverEvents(article, imageUrl) {
-    const mediaContainer = article.querySelector('.media-container');
-    const img = article.querySelector('.movie-poster');
-    let hoverTimeout;
-
-    article.addEventListener('mouseenter', () => {
-      if (!this.trailerLoaded) {
-        hoverTimeout = setTimeout(() => {
-          this.#loadTrailer(mediaContainer);
-          this.trailerLoaded = true;
-        }, 2000);
-      }
-    });
-
-    article.addEventListener('mouseleave', () => {
-      clearTimeout(hoverTimeout);
-      mediaContainer.innerHTML = '';
-      mediaContainer.appendChild(img.cloneNode());
-      this.trailerLoaded = false;
-    });
-  }
-
-  async #loadTrailer(container) {
-    const url = buildTrailerUrl(this.id);
-
-    try {
-      const response = await fetch(url, fetchOptions);
-      const data = await response.json();
-
-      const trailer = data.results.find(video =>
-        video.type === 'Trailer' && video.site === 'YouTube'
-      );
-
-      container.innerHTML = trailer
-        ? `
-          <iframe width="100%" height="315"
-            src="https://www.youtube.com/embed/${trailer.key}?autoplay=1&mute=1"
-            frameborder="0" allow="autoplay" allowfullscreen>
-          </iframe>
-        `
-        : `<p>Ingen tillgänglig trailer.</p>`;
-
-    } catch (err) {
-      console.error('Kunde inte hämta trailer:', err.message);
-      container.innerHTML = `<p>Fel vid hämtning av trailer.</p>`;
-    }
+    if (!this.genres?.length) return '<span>Okänd</span>';
+    return this.genres.map(g => `<span class="badge">${g}</span>`).join('');
   }
 }

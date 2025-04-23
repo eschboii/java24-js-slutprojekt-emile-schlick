@@ -18,7 +18,7 @@ export function filterPeopleByName(people, query) {
   );
 }
 
-export function filterConfirmedPeople(people, query = '') {
+export function filterPeopleWithProfileNKnownFor(people, query = '') {
   return people
     .filter(p =>
       p.known_for?.length > 0 &&

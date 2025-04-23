@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="sv">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,30 +8,30 @@
   <link rel="stylesheet" href="CSS/style.css" />
   <link rel="shortcut icon" href="#" type="image/x-icon" />
 </head>
-<body>
 
+<body>
   <header>
     <div class="header-container">
-    <div class="header-cent">
-    <h1>Emiles Movie Database</h1>
-    <div class="button-group">
-        <button id="btn-popular">Populära Filmer</button>
-        <button id="btn-toprated">Topprankade Filmer</button>
-        <button id="btn-popular-people">Populära Personer</button>
+      <div class="header-cent">
+        <h1>Emiles Movie Database</h1>
+        <div class="button-group">
+          <button id="btn-popular" class="active">Populära Filmer</button>
+          <button id="btn-toprated">Topprankade Filmer</button>
+          <button id="btn-popular-people">Populära Personer</button>
+        </div>
       </div>
-    </div>
 
-    <section id="filters-container">
+      <section id="filters-container">
         <form id="search-form">
           <div class="search-bar-row">
-              <label for="search-input">Sökord:</label>
-            </div>
-            <div class="search-input-wrapper">
-              <input type="text" id="search-input" placeholder="Sök film eller person..." />
-              <button type="submit" id="search-btn">Sök</button>
-            </div>
-        
-  
+            <label for="search-input">Sökord:</label>
+          </div>
+          <div class="search-input-wrapper">
+            <input type="text" id="search-input" placeholder="Sök film eller person..." />
+            <button type="submit" id="search-btn">Sök</button>
+          </div>
+
+
           <div class="dropdowns">
             <div class="filter">
               <label for="search-type">Typ:</label>
@@ -39,14 +40,14 @@
                 <option value="person">Person</option>
               </select>
             </div>
-  
+
             <div class="filter">
               <label for="genre-select">Genre:</label>
               <select id="genre-select">
                 <option value="">Alla</option>
               </select>
             </div>
-  
+
             <div class="filter">
               <label for="sort-select">Sortera:</label>
               <select id="sort-select">
@@ -63,11 +64,20 @@
     </div>
   </header>
 
-  <main>     
+  <main>
     <div id="error-message" style="display: none;"></div>
     <section id="movie-list"></section>
   </main>
 
+  <div id="trailer-modal" class="modal hidden">
+    <div class="modal-backdrop"></div>
+    <div class="modal-content">
+      <button id="modal-close" class="modal-close">&times;</button>
+      <div id="modal-body" class="modal-body"></div>
+    </div>
+  </div>
+
   <script type="module" src="./main.js"></script>
 </body>
+
 </html>

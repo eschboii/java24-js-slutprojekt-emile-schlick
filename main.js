@@ -2,6 +2,7 @@ import {
   fetchGenres
 } from './modules/api.js';
 
+import { handlePopularClick } from './modules/handlers.js';
 import { showError } from './modules/error.js';
 import { setGenreMap } from './modules/genreUtils.js';
 import { initHandlers } from './modules/handlers.js';
@@ -31,6 +32,7 @@ fetchGenres()
   .then(genres => {
     setGenreMap(genres);
     renderGenreDropdown(genres, genreSelect);
+    handlePopularClick();
   })
   .catch(err => {
     console.error('Kunde inte ladda in några genrer:', err.message);
