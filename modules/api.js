@@ -13,6 +13,7 @@ const language = 'en-US';
 const MOVIES_PER_PAGE = 10;
 const PEOPLE_PER_PAGE = 20;
 
+/** En funktion som hämtar JSON och endast returnerar antal bestämda träffar för filmer/personer**/
 async function sliceResults(response, limit) {
   const data = await response.json();
   return { results: data.results.slice(0, limit) };

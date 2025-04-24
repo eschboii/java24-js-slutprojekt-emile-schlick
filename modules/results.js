@@ -1,3 +1,6 @@
+/** 
+ * Håller resultaten så att vi sedan kan bearbeta dessa utan att behöva göra nya api-anrop
+ **/
 import { renderMovies, renderPeople } from './dom.js';
 import { hideError } from './uiUtils.js';
 
@@ -12,6 +15,7 @@ export function setResults(results, type) {
 export function getResults() { return currentResults; }
 export function getCurrentType() { return currentType; }
 
+/** Switch-case som hanterar sortering, populäritet up/ned, bokstavsordning a-ö, ö-a */
 export function sortResults(data, sortValue) {
   const sorted = [...data];
 

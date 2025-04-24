@@ -1,3 +1,8 @@
+/**
+ * Klass som visar våra filmkort hämtad från TMDB-api:et
+ * Lägger till ett artikelelement till sidan
+ * Klassen är private efter konstruktionen
+ *  **/
 import { getGenreName } from '../filters.js';
 import { openTrailerModal } from '../dom.js';
 
@@ -36,7 +41,6 @@ export class MovieCard {
         </div>
       </a>
 
-      <!-- Overlay med summary + knapp till modal -->
       <div class="summary-overlay">
         <p class="overview">${this.overview || 'Ingen beskrivning tillgänglig.'}</p>
         <button class="trailer-btn">Se trailer</button>

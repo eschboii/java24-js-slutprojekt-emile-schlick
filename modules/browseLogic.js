@@ -1,3 +1,6 @@
+/** 
+ * En klass som hanterar data från api, sprar resultaten och skapar korten genom card-klasserna
+ **/
 import {
     fetchPopularMovies,
     fetchTopRatedMovies,
