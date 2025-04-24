@@ -47,8 +47,7 @@ uiUtils.js      – Modal + felbanner
 ### Snabbstart
 
 ```bash
-git clone https://github.com/<user>/movie-explorer.git
-cd movie-explorer
+git clone "https://github.com/eschboii/java24-js-slutprojekt-emile-schlick.git"
 ```
 
 1. **Lägg till Bearer‑token**  
