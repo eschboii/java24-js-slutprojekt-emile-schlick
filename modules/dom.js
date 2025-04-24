@@ -1,5 +1,4 @@
-import './modal.js'
-import { openModalWithContent } from './modal.js';
+import { openModalWithContent } from './uiUtils.js';
 import { MovieCard } from './classes/MovieCard.js';
 import { PersonCard } from './classes/PersonCard.js';
 import { buildTrailerUrl, fetchOptions } from './api.js';

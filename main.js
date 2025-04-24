@@ -1,11 +1,8 @@
-import {
-  fetchGenres
-} from './modules/api.js';
-
-import { handlePopularClick } from './modules/handlers.js';
-import { showError } from './modules/error.js';
-import { setGenreMap } from './modules/genreUtils.js';
-import { initHandlers } from './modules/handlers.js';
+import { fetchGenres } from './modules/api.js';
+import { loadPopularMovies } from './modules/browseLogic.js';
+import { showError } from './modules/uiUtils.js';
+import { setGenreMap } from './modules/filters.js';
+import { initUIEvents } from './modules/uiEvents.js';
 import { renderGenreDropdown } from './modules/dom.js';
 
 const form = document.querySelector('#search-form');
@@ -17,7 +14,7 @@ const btnPopular = document.querySelector('#btn-popular');
 const btnTopRated = document.querySelector('#btn-toprated');
 const btnPopularPeople = document.querySelector('#btn-popular-people');
 
-initHandlers({
+initUIEvents({
   form,
   input,
   typeSelect,
@@ -32,7 +29,7 @@ fetchGenres()
   .then(genres => {
     setGenreMap(genres);
     renderGenreDropdown(genres, genreSelect);
-    handlePopularClick();
+    loadPopularMovies();
   })
   .catch(err => {
     console.error('Kunde inte ladda in några genrer:', err.message);

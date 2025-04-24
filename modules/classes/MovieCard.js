@@ -1,4 +1,4 @@
-import { getGenreNameById } from '../genreUtils.js';
+import { getGenreName } from '../filters.js';
 import { openTrailerModal } from '../dom.js';
 
 export class MovieCard {
@@ -10,7 +10,7 @@ export class MovieCard {
     this.voteAverage = movie.vote_average;
     this.posterPath = movie.poster_path;
     this.overview = movie.overview;
-    this.genres = movie.genre_ids?.map(getGenreNameById).filter(Boolean);
+    this.genres = movie.genre_ids?.map(getGenreName).filter(Boolean);
   }
 
   render() {

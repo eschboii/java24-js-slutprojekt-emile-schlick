@@ -69,6 +69,6 @@ export async function fetchByGenre(genreId) {
 export function buildTrailerUrl(movieId) {
   return `${BASE_URL}/movie/${movieId}/videos?language=${language}`;
 }
-  
+
 
 
