@@ -1,3 +1,10 @@
+/** 
+ * En hjälpklass för att filtrera och sortera data innan detta sparas i results
+ * Översätter genreid till sitt genrenamn, tar bort personer som saknar profilbild eller
+ * om personen saknar några acting credits. Sorterar filmer utifrån popularitet
+ * 
+ * Exporterar alla metoder
+ **/
 const genreMap = new Map();
 
 export function setGenreMap(genres) {

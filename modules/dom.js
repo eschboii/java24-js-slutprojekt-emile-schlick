@@ -1,5 +1,9 @@
 /** 
- * Hantering av hemsidan såsom att faktiskt skapa korten, göra listor och öppna modal
+ * Hantering av hemsidan såsom att skapa korten, göra listor, öppna modal och felmeddelande
+ * Tar emot data från results och bilder/trailers från api.js
+ * 
+ * Exporterar renderMovies, renderPeople, renderGenreDropdown
+ * Anropar uiUtils, MovieCard, PersonCard och api
  **/
 
 import { openModalWithContent } from './uiUtils.js';

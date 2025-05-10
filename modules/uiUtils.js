@@ -1,3 +1,9 @@
+/** 
+ * Innehåller ui-hjälpmetoder för att visa och dölja felmeddelande och loader-overlay
+ * Anropas av dom för att öppna modal för trailern, hantera stängning av modal
+ * 
+ * Exporterar alla sina metoder
+ **/
 const errorElement = document.getElementById('error-message');
 
 export function showError(message) {

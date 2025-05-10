@@ -28,16 +28,47 @@ En app som hämtar data via TMDB:s REST-API och visar filmtopp‑listor och popu
 ## Programflöde (översikt)
 
 ```text
-main.js         – Init → uiEvents.js
-uiEvents.js     – Fångar klick / submit
-browseLogic.js  – Populära / Top‑Rated / Genre
-searchLogic.js  – Frisök
-api.js          – Enda HTTP‑klienten
-results.js      – Mini‑store + sortering
-dom.js          – Renderar kort & modal
-classes/        – MovieCard | PersonCard
-filters.js      – Genrefilter, sort‑helpers
-uiUtils.js      – Modal + felbanner
+main.js         – Förladdar genrer, kopplar alla event-listeners och
+                  kickar igång första “Popular Movies”-vyn.
+
+uiEvents.js     – Lyssnare för UI:t. Lyssnar på navbar-klick, sök-submit,
+                  sort-dropdown, ESC-key m.m. Ropar vidare till browseLogic
+                  eller searchLogic och stänger/öppnar modaler via uiUtils.
+
+browseLogic.js  – Hanterar logik för flikarna “Popular / Top Rated / Genre”.
+                  Hämtar listor via api.js, filtrerar/sorterar, skriver dem
+                  till results-cachen och säger åt dom.js att rendera dessa.
+
+searchLogic.js  – Hanterar fritextssökning. Tar söksträng + typ (movie/person),
+                  hämtar rådata, rensar med filters.js, cachar i results.js
+                  och låter dom.js rendera.
+
+api.js          – Enda service-lagret mot TMDB med fetch-helpers för:
+                  • Populära / Top-Rated filmer  
+                  • Populära personer  
+                  • Frisök (movie|person)  
+                  • Hämta alla genrer (cache)  
+                  • Plocka första YouTube-trailern för en film
+
+results.js      – Klient-cache för senaste resultaten. Håller senaste resultat­listan 
+                  och erbjuder lokala sorteringsfunktioner så vi slipper nya
+                  API-anrop när användaren sorterar resultaten.
+
+dom.js          – Bygger Movie-/PersonCard-komponenter, stoppar in dem i DOM-en, 
+                  sköter trailer-modalen och visar tom- eller fel-state.
+
+classes/        – Återanvändbara kort-klasser:  
+                  • **MovieCard.js** – renderar ett filmobjekt  
+                  • **PersonCard.js** – renderar ett personobjekt
+
+filters.js      – Rena util-funktioner: genre-filter, namn-filter på personer,
+                  sorteringsfunktion för popularitet osv.
+
+uiUtils.js      – Innehåller UI-hjälpare som klasserna andvänder sig av:  
+                  • show/hideLoader()  
+                  • showErrorBanner(msg)  
+                  • openModalWithContent(html) / closeModal()  
+                  • scrollTop()
 ```
 
 ---

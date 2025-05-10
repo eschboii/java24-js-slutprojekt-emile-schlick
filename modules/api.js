@@ -1,3 +1,9 @@
+/**
+ * Hanterar HTTP-anrop till API:et med hjälp av olika fetch-hjälpmetoder
+ * Vi exporterar BASE_URL, fetchOptions, buildTrailerURL
+ * Exporterna av fetchOptions och buildTrailerURL görs för att vi i dom.js ska kunna anropa API:et och skapa en trailer-länk till vald film
+ *  **/
+
 const ACCESS_TOKEN = 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJlMzBmYzE4ODlmNmM4MjgwOGU4YzUzYTgwMmYxNmYzNSIsIm5iZiI6MTc0NDc5MDU3My45ODcsInN1YiI6IjY3ZmY2NDJkODNjNmU1NjdjN2Q5MmI2NCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.OvaOUmpFAd0AHEF2eEf4VrpgYV_cFPhUPxKWvKeemwc';
 
 export const BASE_URL = 'https://api.themoviedb.org/3';

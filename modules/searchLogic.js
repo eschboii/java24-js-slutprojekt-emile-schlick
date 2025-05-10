@@ -1,3 +1,8 @@
+/** 
+ * Hanterar fritextssökning, tar emot en sträng som har triggats av submiten. Hämtar data från API-anrop som filtreras och 
+ * sparar detta i vår cache och får sedan dom att rendera vårt sökresultat
+ * Vi anropar metoderna vi importer
+ **/
 import { searchTMDB } from './api.js';
 import {
     filterMoviesByGenre,

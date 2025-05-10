@@ -1,5 +1,11 @@
 /** 
- * Håller resultaten så att vi sedan kan bearbeta dessa utan att behöva göra nya api-anrop
+ * Håller resultaten i en arraylist och returnerar en kopia som vi sedan kan bearbeta listorna utan att förändra orginalen och 
+ * så att vi slipper göra nya api-anrop. 
+ * currentResults håller den senast hämtade listan
+ * currentType håller reda på om listan är "movie" eller "people"
+ * 
+ * Exporterar alla sina metoder
+ * Anropar dom och uiUtils
  **/
 import { renderMovies, renderPeople } from './dom.js';
 import { hideError } from './uiUtils.js';

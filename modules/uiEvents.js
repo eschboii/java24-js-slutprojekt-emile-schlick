@@ -1,3 +1,11 @@
+/** 
+ * Klassen samlar eventlistners som triggas när vi klickar på filkar, submitar i sökfältet eller sorterar resultat.
+ * Den skickar sedan vidare händelsen till metod som hanterar vad som ska hända. Exempel, fritextssökning skickar till
+ * performSearch i searchLogic 
+ * 
+ * Exporterar initUiEvents
+ * Anropar browsLogic, searchLogic, results och uiUtils
+ **/
 import {
   loadPopularMovies,
   loadTopRatedMovies,

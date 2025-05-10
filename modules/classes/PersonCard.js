@@ -1,3 +1,7 @@
+/**
+ * Klass som visar våra personkort hämtad från TMDB-api:et, gör mer eller mindre samma sak som MovieCard
+ * Exporterar PersonCard
+ *  **/
 export class PersonCard {
   constructor(person) {
     this.id = person.id;

@@ -1,5 +1,8 @@
 /** 
- * En klass som hanterar data från api, sprar resultaten och skapar korten genom card-klasserna
+ * En klass som hanterar data från api, sparar resultaten, filtrerar bort resultat vi inte vill ha
+ * anropar dom för att rendera movie-och personcards och lagrar resultaten
+ * 
+ * Vi anropar results, dom, filters och uiUtils
  **/
 import {
     fetchPopularMovies,

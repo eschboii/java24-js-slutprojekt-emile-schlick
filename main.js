@@ -1,3 +1,9 @@
+/** 
+ * Görs en gång när sidan först öppnas. Laddar in nödvändig data som namnen på genreid och sparar detta, initierar alla eventlistners
+ * och laddar in den startsidan med populära filmer
+ * 
+ * Anropar api, browsLogic, uiUtils, filters, uiEvents och dom
+ **/
 import { fetchGenres } from './modules/api.js';
 import { loadPopularMovies } from './modules/browseLogic.js';
 import { showError } from './modules/uiUtils.js';

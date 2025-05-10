@@ -1,7 +1,9 @@
 /**
  * Klass som visar våra filmkort hämtad från TMDB-api:et
- * Lägger till ett artikelelement till sidan
+ * Lägger till ett artikelelement till sidan och används vid dom.js vid render
  * Klassen är private efter konstruktionen
+ * 
+ * Exporterar MovieCard och anropar importerna
  *  **/
 import { getGenreName } from '../filters.js';
 import { openTrailerModal } from '../dom.js';
